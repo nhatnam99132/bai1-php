@@ -7,17 +7,21 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps {
-        echo 'Test stage'
-      }
-    }
+    // stage('Test') {
+    //   steps {
+    //     echo 'Test stage'
+    //   }
+    // }
     stage('Deploy') {
       steps {
-        git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
+        //git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Deploy stage'
+        // sh '''
+        // sudo cp -r /var/lib/jenkins/workspace/php-demo-pipeline/* /var/www/html/demo
+        // '''
         sh '''
-        sudo cp -r /var/lib/jenkins/workspace/php-demo-pipeline/* /var/www/html/demo
+        sudo cd /var/www/html/demo
+        sudo git pull
         '''
 //         sh '''#!/bin/bash
 // << EOF
