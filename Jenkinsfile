@@ -16,7 +16,7 @@ pipeline {
       steps {
         git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Deploy stage'
-        sh '''#!/bin/bash
+        sh '''
         sudo cp -r /var/lib/jenkins/workspace/php-demo-pipeline/* /var/www/html/demo
         '''
 //         sh '''#!/bin/bash
