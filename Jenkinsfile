@@ -12,7 +12,6 @@ pipeline {
         echo 'Test stage'
       }
     }
-
     stage('Deploy') {
       steps {
         git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
