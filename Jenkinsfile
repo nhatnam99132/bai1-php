@@ -15,12 +15,13 @@ pipeline {
 
     stage('Deploy') {
       steps {
+        git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Deploy stage'
-        sh '''#!/bin/bash
-ssh -T -i /home/jenkins/key-pair.pem www-user@3.14.12.213 << EOF
-cd /var/www/html/demo
-git pull
-EOF'''
+//         sh '''#!/bin/bash
+// << EOF
+// cd /var/www/html/demo
+// git pull
+// EOF'''
       }
     }
 
