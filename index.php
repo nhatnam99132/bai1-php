@@ -1,12 +1,12 @@
 
 <?php
-//     $a = "123";
-//    function test(){
-//        global $a;
-//        echo "so $a"."abc123";
-//    }
-//    test();
-//    var_dump($_SERVER);
+    $a = "123";
+   function test(){
+       global $a;
+       echo "so $a"."abc123";
+   }
+   test();
+   var_dump($_SERVER);
 ?>
 <!DOCTYPE html>
 <html>
