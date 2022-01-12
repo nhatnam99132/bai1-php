@@ -20,8 +20,8 @@ pipeline {
         // sudo cp -r /var/lib/jenkins/workspace/php-demo-pipeline/* /var/www/html/demo
         // '''
         sh '''
-        sudo cd /var/www/html/demo
-        sudo git pull
+        cd /var/www/html/demo
+        sudo git pull origin master
         '''
 //         sh '''#!/bin/bash
 // << EOF
