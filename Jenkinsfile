@@ -1,9 +1,13 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Update') {
       steps {
-        echo 'Build stage'
+        echo 'Update code stage'
+        sh '''
+        cd /var/www/html/demo
+        sudo git pull origin master
+        '''
       }
     }
 
@@ -12,17 +16,13 @@ pipeline {
     //     echo 'Test stage'
     //   }
     // }
-    stage('Deploy') {
+    stage('Build') {
       steps {
         //git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
-        echo 'Deploy stage'
+        echo 'Build stage'
         // sh '''
         // sudo cp -r /var/lib/jenkins/workspace/php-demo-pipeline/* /var/www/html/demo
         // '''
-        sh '''
-        cd /var/www/html/demo
-        sudo git pull origin master
-        '''
 //         sh '''#!/bin/bash
 // << EOF
 // cd /var/www/html/demo
