@@ -1,5 +1,5 @@
 pipeline {
-  agent master
+  agent { label 'master' }
   stages {
     stage('Pull') {
       //git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
