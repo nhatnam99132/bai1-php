@@ -7,11 +7,11 @@ pipeline {
         branch 'develop'
       }
       steps {
-        git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
+        git branch: 'develop', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Pull stage'
         sh '''
         ls -la
-        sudo scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-pipeline/* nhatnam@172.31.23.141:/var/www/html/demo
+        sudo scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
         '''
         // sh '''
         // cd /var/www/html/demo
@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Build') {
       when {
-        branch 'production'
+        branch 'develop'
       }
       agent { node { label 'master' } }
       steps {
