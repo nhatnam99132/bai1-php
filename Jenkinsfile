@@ -1,9 +1,10 @@
 pipeline {
-  agent any
+  agent master
   stages {
-    stage('Build') {
+    stage('Pull') {
+      //git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
       steps {
-        echo 'Build stage'
+        echo 'Pull stage'
         sh '''
         cd /var/www/html/demo
         sudo git pull origin master
@@ -11,11 +12,11 @@ pipeline {
       }
     }
 
-    // stage('Test') {
-    //   steps {
-    //     echo 'Test stage'
-    //   }
-    // }
+    stage('Build') {
+      steps {
+        echo 'Build stage'
+      }
+    }
     stage('Test') {
       steps {
         //git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
