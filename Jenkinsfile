@@ -3,6 +3,9 @@ pipeline {
   stages {
     stage('Pull') {
       agent { node { label 'slave' } }
+      when {
+        branch 'develop'
+      }
       steps {
         git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Pull stage'
@@ -17,6 +20,9 @@ pipeline {
       }
     }
     stage('Build') {
+      when {
+        branch 'production'
+      }
       agent { node { label 'master' } }
       steps {
         echo 'Build stage'
@@ -25,7 +31,7 @@ pipeline {
 
      stage('Deploy') {
        when {
-        branch 'production'
+        branch 'master'
       }
       steps {
         echo 'Deploy stage'
