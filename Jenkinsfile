@@ -30,6 +30,8 @@ pipeline {
         echo 'Deploy stage'
       }
     }
+  }
+}
 
 
     // stage('Deyploy') {
@@ -45,8 +47,8 @@ pipeline {
 // cd /var/www/html/demo
 // git pull
 // EOF'''
-      }
-    }
+//       }
+//     }
 
-  }
-}
+//   }
+// }
