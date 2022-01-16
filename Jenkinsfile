@@ -7,7 +7,6 @@ pipeline {
         git branch: 'master', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Pull stage'
         sh '''
-        cd /
         ls -la
         sudo scp -i key-pair.pem /home/jenkins-slave-1/workspace/php-pipeline/* nhatnam@172.31.23.141:/var/www/html/demo
         '''
