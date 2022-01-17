@@ -3,6 +3,7 @@ pipeline {
   environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'mysql'
+        BRANCH = 'develop'
   }
   parameters {
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
@@ -13,15 +14,15 @@ pipeline {
          label 'slave'
       }
       when {
-        branch 'develop'
+        branch "${BRANCH}"
       }
       steps {
-        git branch: 'develop', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
+        git branch: "${BRANCH}", credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Pull stage'
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         echo "Database engine is ${DB_ENGINE}"
         sh '''
-        sudo scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
+        scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
         '''
         // sh '''
         // cd /var/www/html/demo
@@ -31,7 +32,7 @@ pipeline {
     }
     stage('Build') {
       when {
-        branch 'develop'
+        branch "${BRANCH}"
       }
       agent {
          label 'master'
