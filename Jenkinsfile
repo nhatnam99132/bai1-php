@@ -1,8 +1,6 @@
 pipeline {
   agent none
   environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'mysql'
         BRANCH = 'develop'
   }
   parameters {
@@ -20,7 +18,7 @@ pipeline {
         git branch: "${BRANCH}", credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Pull stage'
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        echo "Database engine is ${DB_ENGINE}"
+        echo "This is branch: ${BRANCH}"
         sh '''
         scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
         '''
