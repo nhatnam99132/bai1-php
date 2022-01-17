@@ -1,17 +1,26 @@
 pipeline {
   agent none
+  environment {
+        BRANCH = 'develop'
+  }
+  parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+  }
   stages {
     stage('Pull') {
-      agent { node { label 'slave' } }
+      agent {
+         label 'slave'
+      }
       when {
-        branch 'develop'
+        branch "${BRANCH}"
       }
       steps {
-        git branch: 'develop', credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
+        git branch: "${BRANCH}", credentialsId: 'nhatnam99132', url: 'https://github.com/nhatnam99132/bai1-php.git'
         echo 'Pull stage'
+        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        echo "This is branch: ${BRANCH}"
         sh '''
-        ls -la
-        sudo scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
+        scp -i /key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
         '''
         // sh '''
         // cd /var/www/html/demo
@@ -21,16 +30,20 @@ pipeline {
     }
     stage('Build') {
       when {
-        branch 'develop'
+        branch "${BRANCH}"
       }
-      agent { node { label 'master' } }
+      agent {
+         label 'master'
+      }
       steps {
         echo 'Build stage'
+        echo "${params.Greeting} World!"
+        sh 'printenv'
       }
     }
 
      stage('Deploy') {
-       when {
+      when {
         branch 'master'
       }
       steps {
