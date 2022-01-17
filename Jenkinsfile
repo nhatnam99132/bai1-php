@@ -21,7 +21,7 @@ pipeline {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         echo "Database engine is ${DB_ENGINE}"
         sh '''
-        scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
+        sudo scp -i /home/jenkins-slave-1/key-pair.pem /home/jenkins-slave-1/workspace/php-multi-pipeline_develop/* nhatnam@172.31.23.141:/var/www/html/demo
         '''
         // sh '''
         // cd /var/www/html/demo
